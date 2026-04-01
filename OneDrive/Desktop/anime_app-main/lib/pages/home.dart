@@ -26,8 +26,9 @@ class HomePage extends StatelessWidget {
         await launchUrl(uri, mode: LaunchMode.platformDefault);
       }
     } catch (e) {
+      if (!context.mounted) return;
+
       ScaffoldMessenger.of(
-        
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
     }

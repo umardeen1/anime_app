@@ -54,7 +54,7 @@ class AnimeDetailPage extends StatelessWidget {
                       ),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
-                        Colors.black.withValues(alpha:0.6),
+                        Colors.black.withValues(alpha: 0.6),
                         BlendMode.darken,
                       ),
                     ),
