@@ -26,6 +26,8 @@ class HomePage extends StatelessWidget {
         await launchUrl(uri, mode: LaunchMode.platformDefault);
       }
     } catch (e) {
+      if (!context.mounted) return;
+
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
@@ -85,8 +87,8 @@ class HomePage extends StatelessWidget {
                 end: Alignment.topCenter,
                 stops: const [0.0, 0.4, 0.9],
                 colors: [
-                  Colors.black.withOpacity(0.95),
-                  Colors.black.withOpacity(0.3),
+                  Colors.black.withValues(alpha: 0.95),
+                  Colors.black.withValues(alpha: 0.3),
                   Colors.transparent,
                 ],
               ),
@@ -260,7 +262,7 @@ class HomePage extends StatelessWidget {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.9),
+                              color: Colors.red.withValues(alpha: 0.9),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Row(

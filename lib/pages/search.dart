@@ -2,7 +2,6 @@ import 'package:anime_app/pages/anime_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/anime_bloc.dart';
-// Ensure this matches your file name
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
