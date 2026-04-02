@@ -7,12 +7,14 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+
+  # ANDROID BUILD
+  android:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -30,8 +32,58 @@ jobs:
 
       - name: Build APK
         run: flutter build apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: android-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+
+  # iOS BUILD (no signing)
+  ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS (no signing)
+        run: flutter build ios --release --no-codesign
+
+
+  # WINDOWS BUILD
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Enable Windows support
+        run: flutter config --enable-windows-desktop
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Windows App
+        run: flutter build windows
+
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: build/windows/x64/runner/Release/
