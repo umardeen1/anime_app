@@ -4,7 +4,7 @@ import 'package:anime_app/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'services/api_service.dart';
-import 'bloc/anime_bloc.dart';
+import 'bloc/anime_bloc.dart'
 # i love flutter and don't want to continue 
 void main() {
   runApp(const AnimeHub());
